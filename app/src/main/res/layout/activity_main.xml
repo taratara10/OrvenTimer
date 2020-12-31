@@ -1,0 +1,169 @@
+<android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main_inference"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+<!--  ResultLayer  -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/resultLayer"
+        android:layout_width="match_parent"
+        android:layout_height="195dp"
+        android:background="#D45A78">
+
+        <TextView
+            android:id="@+id/result"
+            android:layout_width="131dp"
+            android:layout_height="77dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="00:00" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Main Layer -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mainLayer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- packageMin-->
+        <!-- packageSec-->
+
+        <NumberPicker
+            android:id="@+id/packageMin"
+            android:layout_width="66dp"
+            android:layout_height="155dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/packageSec"
+            app:layout_constraintEnd_toStartOf="@+id/warmMin"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toEndOf="@+id/warmTitle"
+            app:layout_constraintTop_toTopOf="@+id/packageSec"
+            app:layout_constraintVertical_bias="0.509" />
+
+        <NumberPicker
+            android:id="@+id/packageSec"
+            android:layout_width="64dp"
+            android:layout_height="155dp"
+            android:layout_marginStart="32dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintEnd_toStartOf="@+id/warmSec"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toEndOf="@+id/warmMin"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.516" />
+
+        <TextView
+            android:id="@+id/warmMin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="分"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintStart_toEndOf="@+id/packageMin"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/warmSec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="秒"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintStart_toEndOf="@+id/packageSec"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <TextView
+            android:id="@+id/warmTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:text="温め時間"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintBottom_toBottomOf="@+id/packageMin"
+            app:layout_constraintEnd_toStartOf="@+id/packageMin"
+            app:layout_constraintHorizontal_bias="0.52"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/packageMin"
+            app:layout_constraintVertical_bias="0.498" />
+
+
+        <!-- 電子レンジのワットの設定-->
+
+        <TextView
+            android:id="@+id/packageWattsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="商品のワット数"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+        <Spinner
+            android:id="@+id/packageSpinner"
+            android:layout_width="149dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.595"
+            app:layout_constraintStart_toEndOf="@+id/packageWattsTitle"
+            app:layout_constraintTop_toTopOf="@+id/guideline2"
+            tools:listitem="500W" />
+
+        <TextView
+            android:id="@+id/selfWattsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="あなたの電子レンジ"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+        <Spinner
+            android:id="@+id/selfWattsSpinner"
+            android:layout_width="149dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/selfWattsTitle"
+            app:layout_constraintTop_toTopOf="@+id/guideline3"
+            tools:listitem="500W" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="32dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.75" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</android.widget.LinearLayout>

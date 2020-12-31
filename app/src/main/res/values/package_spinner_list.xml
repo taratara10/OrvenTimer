@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="package_watts_items">
+        <item>300W</item>
+        <item>400W</item>
+        <item>500W</item>
+        <item>600W</item>
+        <item>700W</item>
+        <item>800W</item>
+        <item>900W</item>
+        <item>1000W</item>
+        <item>1100W</item>
+        <item>1200W</item>
+        <item>1300W</item>
+    </string-array>
+
+    <string-array name="self_watts_items">
+        <item>300W</item>
+        <item>400W</item>
+        <item>500W</item>
+        <item>600W</item>
+        <item>700W</item>
+        <item>800W</item>
+        <item>900W</item>
+        <item>1000W</item>
+        <item>1100W</item>
+        <item>1200W</item>
+        <item>1300W</item>
+    </string-array>
+</resources>
