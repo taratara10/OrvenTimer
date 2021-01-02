@@ -7,63 +7,75 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import android.widget.AdapterView.OnItemSelectedListener as AdapterViewOnItemSelectedListener
 
 
-class MainActivity : AppCompatActivity(){
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        //NumberPicker
+//
+//        numberPicker
+//
         val packageMin = findViewById<NumberPicker>(R.id.packageMin)
         packageMin.minValue = 0
         packageMin.maxValue = 10
-        packageSec.setOnValueChangedListener(){ numberPicker: NumberPicker, i: Int, i1: Int ->
+        packageMin.wrapSelectorWheel = false
+        packageMin.setOnValueChangedListener(){ numberPicker: NumberPicker, i: Int, i1: Int ->
             calcWatts()
         }
 
         val packageSec = findViewById<NumberPicker>(R.id.packageSec)
         packageSec.minValue = 0
-        packageSec.maxValue = 60
+        packageSec.maxValue = 59
         packageSec.setOnValueChangedListener(){ numberPicker: NumberPicker, i: Int, i1: Int ->
             calcWatts()
         }
 
+//
+//        sharedPreferences
+//
+        val prefs = getSharedPreferences("lastSelectedWatts", MODE_PRIVATE)
+        val editor = prefs.edit()
+        val packageSelectedWatts = prefs.getInt("packageSelectedWatts", 0)
+        val selfSelectedWatts = prefs.getInt("selfSelectedWatts", 0)
+
+//
+// spinnerの処理
+//
+
+
         //Package Spinner
         val packageSpinner = findViewById<Spinner>(R.id.packageSpinner)
         val packageItem = resources.getStringArray(R.array.package_watts_items)
-
         setSpinnerItem(this, packageSpinner, packageItem)
+        packageSpinner.setSelection(packageSelectedWatts)
 
         //SelfWattsSpinner
         val selfWattsSpinner = findViewById<Spinner>(R.id.selfWattsSpinner)
         val selfWattsItem = resources.getStringArray(R.array.self_watts_items)
-
         setSpinnerItem(this, selfWattsSpinner, selfWattsItem)
+        selfWattsSpinner.setSelection(selfSelectedWatts)
 
-        packageSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            //　アイテムが選択された時
+        val spinnerListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 calcWatts()
-                }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {  TODO("Not yet implemented") }
-                }
-
-        selfWattsSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            //　アイテムが選択された時
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                calcWatts()
-
-                }
-
+                editor.putInt("packageSelectedWatts",packageSpinner.selectedItemPosition)
+                editor.putInt("selfSelectedWatts",selfWattsSpinner.selectedItemPosition)
+                editor.apply()
+            }
             override fun onNothingSelected(parent: AdapterView<*>?) { TODO("Not yet implemented") }
-              }
+        }
 
 
-    }
+        packageSpinner.onItemSelectedListener = spinnerListener
+        selfWattsSpinner.onItemSelectedListener = spinnerListener
 
-    //ここからfunction
+
+
+
+    } //onCreate
+
 
     private fun setSpinnerItem(context: Context, spinner: Spinner, item: Array<String>): Spinner {
         val adapter = ArrayAdapter(context, android.R.layout.simple_spinner_dropdown_item, item)
@@ -94,17 +106,6 @@ class MainActivity : AppCompatActivity(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-    }
+}
 
 
