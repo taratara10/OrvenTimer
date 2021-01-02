@@ -11,6 +11,10 @@ import android.widget.AdapterView.OnItemSelectedListener as AdapterViewOnItemSel
 
 
 class MainActivity : AppCompatActivity() {
+
+
+    val sectionList = arrayOf<String>("00", "10","20", "30", "40", "50")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -20,20 +24,20 @@ class MainActivity : AppCompatActivity() {
         val packageMin = findViewById<NumberPicker>(R.id.packageMin)
         packageMin.minValue = 0
         packageMin.maxValue = 10
-        packageMin.wrapSelectorWheel = false
         packageMin.setOnValueChangedListener(){ numberPicker: NumberPicker, i: Int, i1: Int ->
             calcWatts()
         }
 
         val packageSec = findViewById<NumberPicker>(R.id.packageSec)
         packageSec.minValue = 0
-        packageSec.maxValue = 59
+        packageSec.maxValue = sectionList.size -1
+        packageSec.displayedValues = sectionList
         packageSec.setOnValueChangedListener(){ numberPicker: NumberPicker, i: Int, i1: Int ->
             calcWatts()
         }
 
 //
-//        sharedPreferences
+//sharedPreferences
 //
         val prefs = getSharedPreferences("lastSelectedWatts", MODE_PRIVATE)
         val editor = prefs.edit()
@@ -43,8 +47,6 @@ class MainActivity : AppCompatActivity() {
 //
 // spinnerの処理
 //
-
-
         //Package Spinner
         val packageSpinner = findViewById<Spinner>(R.id.packageSpinner)
         val packageItem = resources.getStringArray(R.array.package_watts_items)
@@ -67,12 +69,8 @@ class MainActivity : AppCompatActivity() {
             override fun onNothingSelected(parent: AdapterView<*>?) { TODO("Not yet implemented") }
         }
 
-
         packageSpinner.onItemSelectedListener = spinnerListener
         selfWattsSpinner.onItemSelectedListener = spinnerListener
-
-
-
 
     } //onCreate
 
@@ -86,7 +84,7 @@ class MainActivity : AppCompatActivity() {
 
      private fun calcWatts(){
         val min = packageMin.value.toString().toInt()
-        val ss = packageSec.value.toString().toInt()
+        val ss = sectionList[packageSec.value].toInt()
 
         val selfWatts = selfWattsSpinner.selectedItem.toString() //500W -> 500:Intに変換
         val selfWattsInt = selfWatts.removeSuffix("W").toInt()
