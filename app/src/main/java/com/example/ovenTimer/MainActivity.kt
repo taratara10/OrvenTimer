@@ -1,13 +1,11 @@
-package com.example.microwaveovencalc
+package com.example.ovenTimer
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import android.widget.AdapterView.OnItemSelectedListener as AdapterViewOnItemSelectedListener
 
 
 class MainActivity : AppCompatActivity() {
@@ -18,6 +16,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
 //
 //        numberPicker
 //

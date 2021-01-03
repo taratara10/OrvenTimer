@@ -1,4 +1,4 @@
-package com.example.microwaveovencalc
+package com.example.ovenTimer
 
 import org.junit.Test
 
