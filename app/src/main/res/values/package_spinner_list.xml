@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="package_watts_items">
-        <item>300W</item>
-        <item>400W</item>
         <item>500W</item>
         <item>600W</item>
         <item>700W</item>
@@ -15,8 +13,6 @@
     </string-array>
 
     <string-array name="self_watts_items">
-        <item>300W</item>
-        <item>400W</item>
         <item>500W</item>
         <item>600W</item>
         <item>700W</item>
