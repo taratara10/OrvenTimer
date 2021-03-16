@@ -1,5 +1,5 @@
 # OrvenTimer
-商品のワット数と、自分の電子レンジのワット数から、最適な温め時間を計算するアプリです。
+商品のワット数と、自分の電子レンジのワット数から、最適な温め時間を計算するアプリです。　<br>
 play store →　https://play.google.com/store/apps/details?id=com.tarashuu.ovenTimer
 
 # Image
