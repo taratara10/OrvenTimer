@@ -15,12 +15,10 @@
         android:background="@drawable/gradation">
 
         <TextView
-            android:id="@+id/result"
+            android:id="@+id/tv_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="TextView"
-
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@android:color/white"
             android:textSize="40sp"
@@ -32,14 +30,14 @@
             tools:text="00:00" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tv_result_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ちょうどいい温め時間"
             android:textColor="@android:color/white"
-            app:layout_constraintBottom_toTopOf="@+id/result"
-            app:layout_constraintEnd_toEndOf="@+id/result"
-            app:layout_constraintStart_toStartOf="@+id/result"
+            app:layout_constraintBottom_toTopOf="@+id/tv_result"
+            app:layout_constraintEnd_toEndOf="@+id/tv_result"
+            app:layout_constraintStart_toStartOf="@+id/tv_result"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0" />
 
@@ -54,16 +52,29 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <!-- packageMin-->
-        <!-- packageSec-->
+        <!-- np_package_minute-->
+
+        <TextView
+            android:id="@+id/tv_package_warming_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:text="商品の温め時間"
+            app:layout_constraintBottom_toBottomOf="@+id/np_package_minute"
+            app:layout_constraintEnd_toStartOf="@+id/np_package_minute"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/np_package_minute"
+            app:layout_constraintVertical_bias="0.498" />
 
         <NumberPicker
-            android:id="@+id/packageMin"
+            android:id="@+id/np_package_minute"
             android:layout_width="66dp"
             android:layout_height="155dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/packageSec"
-            app:layout_constraintEnd_toStartOf="@+id/warmMin"
+            app:layout_constraintEnd_toStartOf="@+id/tv_warming_min"
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintTop_toTopOf="@+id/packageSec"
             app:layout_constraintVertical_bias="0.509" />
@@ -74,24 +85,24 @@
             android:layout_height="155dp"
             android:layout_marginStart="32dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"
-            app:layout_constraintEnd_toStartOf="@+id/warmSec"
+            app:layout_constraintEnd_toStartOf="@+id/tv_warming_sec"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintHorizontal_chainStyle="spread"
-            app:layout_constraintStart_toEndOf="@+id/warmMin"
+            app:layout_constraintStart_toEndOf="@+id/tv_warming_min"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.516" />
 
         <TextView
-            android:id="@+id/warmMin"
+            android:id="@+id/tv_warming_min"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="分"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"
-            app:layout_constraintStart_toEndOf="@+id/packageMin"
+            app:layout_constraintStart_toEndOf="@+id/np_package_minute"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/warmSec"
+            android:id="@+id/tv_warming_sec"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="秒"
@@ -106,25 +117,11 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.5" />
 
-        <TextView
-            android:id="@+id/warmTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
-            android:text="商品の温め時間"
-            app:layout_constraintBottom_toBottomOf="@+id/packageMin"
-            app:layout_constraintEnd_toStartOf="@+id/packageMin"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintHorizontal_chainStyle="spread"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="@+id/packageMin"
-            app:layout_constraintVertical_bias="0.498" />
 
 
         <!-- 電子レンジのワットの設定-->
-
         <TextView
-            android:id="@+id/packageWattsTitle"
+            android:id="@+id/tv_package_watts_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="商品のワット数"
@@ -133,18 +130,16 @@
             app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
         <Spinner
-            android:id="@+id/packageSpinner"
+            android:id="@+id/sp_package_watts"
             android:layout_width="149dp"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@+id/guideline3"
             app:layout_constraintEnd_toStartOf="@+id/guideline4"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/packageWattsTitle"
             app:layout_constraintTop_toTopOf="@+id/guideline2"
             tools:listitem="500W" />
 
         <TextView
-            android:id="@+id/selfWattsTitle"
+            android:id="@+id/tv_self_watts_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="あなたの電子レンジ"
@@ -153,13 +148,11 @@
             app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
         <Spinner
-            android:id="@+id/selfWattsSpinner"
+            android:id="@+id/sp_self_watts"
             android:layout_width="149dp"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline4"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/selfWattsTitle"
             app:layout_constraintTop_toTopOf="@+id/guideline3"
             tools:listitem="500W" />
 

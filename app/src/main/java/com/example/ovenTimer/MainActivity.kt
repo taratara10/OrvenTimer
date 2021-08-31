@@ -2,20 +2,23 @@ package com.example.ovenTimer
 
 import android.content.Context
 import android.os.Bundle
+import android.util.AttributeSet
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.example.ovenTimer.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
-
+    private lateinit var binding: ActivityMainBinding
 
     val sectionList = arrayOf<String>("00", "10","20", "30", "40", "50")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
 
 //
@@ -75,6 +78,9 @@ class MainActivity : AppCompatActivity() {
     } //onCreate
 
 
+    override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
+        return super.onCreateView(name, context, attrs)
+    }
     private fun setSpinnerItem(context: Context, spinner: Spinner, item: Array<String>): Spinner {
         val adapter = ArrayAdapter(context, android.R.layout.simple_spinner_dropdown_item, item)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -98,7 +104,7 @@ class MainActivity : AppCompatActivity() {
 
         val resultText = "${selfWattsWarmTime/60}分${selfWattsWarmTime%60}秒"
 
-        val result = findViewById<TextView>(R.id.result)
+        val result = findViewById<TextView>(R.id.tv_result)
         result.text = resultText
     }
 
