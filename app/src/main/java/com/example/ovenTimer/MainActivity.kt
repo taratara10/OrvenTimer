@@ -77,9 +77,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    //"500W" -> 500
-    private fun convertWattsToInt(item: String):Int = item.removeSuffix("W").toInt()
-
     private fun setupNumberPicker(view: NumberPicker, min: Int, max:Int, displayedValue: Array<String>?) {
         view.minValue = min
         view.maxValue = max
@@ -93,12 +90,15 @@ class MainActivity : AppCompatActivity() {
         spinner.setSelection(lastSelected)
     }
 
-    private fun updateWarmingTimeTextView(){
+    //"500W" -> 500
+    fun convertWattsToInt(item: String):Int = item.removeSuffix("W").toInt()
+
+    fun updateWarmingTimeTextView(){
         val warmTime = calcWarmingTime(mMin,mSec,mPackageWatts,mSelfWatts)
         binding.tvResult.text = String.format("${warmTime/60}分${warmTime%60}秒")
     }
 
-    private fun calcWarmingTime(min: Int, sec: Int, packageWatts: Int, selfWatts: Int): Int {
+    fun calcWarmingTime(min: Int, sec: Int, packageWatts: Int, selfWatts: Int): Int {
         //秒数に変換
         val warmingSec = min * 60 + sec
         //熱量 = ワット x 時間
